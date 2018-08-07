@@ -13,3 +13,5 @@ app.get('*', (req,res) => {
 const server = app.listen(port, () => {
 	console.log(`🔥 server running on ${port} 🔥`)
 })
+
+module.exports = server;
