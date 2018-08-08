@@ -19,6 +19,7 @@
   "homepage": "https://github.com/shullmb/opti-plot#readme",
   "dependencies": {
     "dotenv": "^6.0.0",
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "mongoose": "^5.2.7"
   }
 }
