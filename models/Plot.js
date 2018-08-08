@@ -4,7 +4,8 @@ const cropSchema = new mongoose.Schema({
 	name: String,
 	numPlanted: Number,
 	spread: Number,
-	rowSpacing: Number
+	rowSpacing: Number,
+	icon: String
 })
 
 const plotSchema = new mongoose.Schema({
