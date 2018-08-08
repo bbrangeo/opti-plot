@@ -7,6 +7,10 @@ ___
 
 ### Wireframes
 
+### Stack
+- MongoDB
+- Express
+- 
 ___
 ## React & D3
 
