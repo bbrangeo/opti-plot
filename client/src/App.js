@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Icon } from './Icon';
-import { Grid } from '@material-ui/core';
+import { Grid, AppBar, Toolbar, Typography, Grow } from '@material-ui/core';
 import axios from 'axios';
 
 
@@ -9,8 +9,11 @@ class App extends Component {
     super(props)
     this.state = {
       data: null,
-      companions: null
+      companions: null,
+      grown: false
     }
+    this.growThatShit = this.growThatShit.bind(this)
+
   }
 
   componentDidMount() {
@@ -22,6 +25,13 @@ class App extends Component {
           companions: response.data.included
         })
       })
+  }
+
+  growThatShit() {
+    
+    this.setState({
+      grown: !this.state.grown
+    })
   }
 
   render() {
@@ -41,15 +51,24 @@ class App extends Component {
 
     console.log(this.state.included)
     return (
-      <Grid container spacing={16}>
-        <Grid item xs={12}>
-          <div className="App">
-            <h1>Hello OptiPlot</h1>
-            <Icon src={iconString} size="60" />
-          </div>
+      <div>
+        <AppBar>
+          <Toolbar>
+            <Typography variant="title" color="inherit">
+              OPTIPLOT
+          </Typography>
+          </Toolbar>
+        </AppBar>
+        <Grid container spacing={16}>
+          <Grid item xs={12}>
+            <div className="App">
+              <h1>Hello OptiPlot</h1>
+              <Icon src={iconString} size="60" />
+            </div>
+          </Grid>
+              {companions}
         </Grid>
-            {companions}
-      </Grid>
+      </div>
     );
   }
 }
