@@ -15,7 +15,7 @@ mongoose.connect('mongodb://localhost/optiplot')
 app.use(express.static(__dirname + "/client/build"));
 
 app.use('/auth', auth);
-app.use('/users', users);
+// app.use('/users', users);
 
 app.get('*', (req, res) => {
 	res.sendFile(__dirname + "/client/build/index.html");

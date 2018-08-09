@@ -41,7 +41,7 @@ class Signup extends Component {
       password: this.state.password
     }).then(result => {
       localStorage.setItem('mernToken', result.data.token)
-      this.props.liftToken(result.data);
+      this.props.liftTokenToState(result.data);
     }).catch(err => console.log(err))
   }
 

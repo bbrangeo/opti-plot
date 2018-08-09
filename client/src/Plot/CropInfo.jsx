@@ -35,7 +35,7 @@ export class CropInfo extends Component {
     let iconString = this.state.data ? this.state.data.attributes.svg_icon : ''
 
     return (
-      <Grid container justify="center" spacing={16}>
+      <Grid container spacing={16}>
         <Grid item xs={12}>
           <div className="App">
             <h1>Hello OptiPlot</h1>
