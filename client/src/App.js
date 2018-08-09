@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Icon } from './Icon';
+import { CropInfo } from './Plot/CropInfo'
 import { Grid, AppBar, Toolbar, Typography } from '@material-ui/core';
 import axios from 'axios';
 
@@ -8,38 +9,55 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      data: null,
-      companions: null,
+      token: '',
+      user: null,
+    }
+    this.liftTokenToState = this.liftTokenToState.bind(this);
+    this.logout = this.logout.bind(this);
+    this.checkForLocalToken = this.checkForLocalToken.bind(this);
+  }
+
+  liftTokenToState(data) {
+    this.setState({
+      token: data.token,
+      user: data.user
+    })
+  }
+
+  logout() {
+    localStorage.removeItem('mernToken');
+    this.setState({
+      token: '',
+      user: null
+    })
+  }
+
+  checkForLocalToken() {
+    let token = localStorage.getItem('mernToken');
+    if (!token || token === 'undefined') {
+      localStorage.removeItem('mernToken')
+      this.setState({
+        token: '',
+        user: null
+      })
+    } else {
+      axios.post('/auth/me/from/token', {
+        token
+      }).then(results => {
+        localStorage.setItem('mernToken', results.data.token);
+        this.setState({
+          token: results.data.token,
+          user: results.data.user
+        })
+      }).catch(err => console.log(err));
     }
   }
 
   componentDidMount() {
-    axios.get('https://openfarm.cc/api/v1/crops/54bda00e3961370003150400')
-      .then(response => {
-        console.log(response)
-        this.setState({
-          data: response.data.data,
-          companions: response.data.included
-        })
-      })
+    this.checkForLocalToken();
   }
 
   render() {
-    console.log(this.state.companions)
-    const companions = this.state.companions ? this.state.companions.map( (companion, i) => {
-      return (
-        <Grid item xs={12} lg={3}>
-          <div key={i} >
-            <h4>{companion.attributes.name}</h4>
-            <Icon src={companion.attributes.svg_icon} size="40" />
-          </div>
-        </Grid>
-      )
-    }) : ''
-    
-    let iconString = this.state.data ? this.state.data.attributes.svg_icon : ''
-
-    console.log(this.state.included)
     return (
       <div>
         <AppBar>
@@ -49,15 +67,9 @@ class App extends Component {
           </Typography>
           </Toolbar>
         </AppBar>
-        <Grid container spacing={16}>
-          <Grid item xs={12}>
-            <div className="App">
-              <h1>Hello OptiPlot</h1>
-              <Icon src={iconString} size="60" />
-            </div>
-          </Grid>
-              {companions}
-        </Grid>
+        <div>
+          <CropInfo></CropInfo>
+        </div>
       </div>
     );
   }
