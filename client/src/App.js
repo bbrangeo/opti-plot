@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 import { CropInfo } from './Plot/CropInfo'
 import { Grid, AppBar, Toolbar, Typography } from '@material-ui/core';
-import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
-import {green, brown} from '@material-ui/core/colors';
+import { createMuiTheme, getMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+import * as Colors from '@material-ui/core/colors';
 import axios from 'axios';
 
 
 const theme = createMuiTheme({
   palette: {
-    primary: green,
-    secondary: {
-      main: brown,
-    },
+    primary: Colors.green,
+    secondary: Colors.brown,
   },
 });
+
 
 class App extends Component {
   constructor(props) {
