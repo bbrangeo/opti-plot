@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Icon } from './Icon';
+import { Grid } from '@material-ui/core';
 import axios from 'axios';
 
 
@@ -27,10 +28,12 @@ class App extends Component {
     console.log(this.state.companions)
     const companions = this.state.companions ? this.state.companions.map( (companion, i) => {
       return (
-        <div key={i} >
-          <h4>{companion.attributes.name}</h4>
-          <Icon icon={companion.attributes.svg_icon} size="40" />
-        </div>
+        <Grid item xs={12} lg={3}>
+          <div key={i} >
+            <h4>{companion.attributes.name}</h4>
+            <Icon src={companion.attributes.svg_icon} size="40" />
+          </div>
+        </Grid>
       )
     }) : ''
     
@@ -38,12 +41,15 @@ class App extends Component {
 
     console.log(this.state.included)
     return (
-      <div className="App">
-        <h1>Hello OptiPlot</h1>
-        <Icon icon={iconString} size="60" />
-        {/* <!-- companion --> */}
-        {companions}
-      </div>
+      <Grid container spacing={16}>
+        <Grid item xs={12}>
+          <div className="App">
+            <h1>Hello OptiPlot</h1>
+            <Icon src={iconString} size="60" />
+          </div>
+        </Grid>
+            {companions}
+      </Grid>
     );
   }
 }
