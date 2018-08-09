@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const Icon = props => {
-  let iconString = props.icon
+  let iconString = props.icon ? props.icon : ''
   iconString = iconString.replace(/<\?xml.*?\?>/g, '')
   iconString = iconString.replace(/<!-- .* -->/g, '')
   iconString = iconString.replace(/\r?\n|\r/g, '')
@@ -9,6 +9,6 @@ export const Icon = props => {
   const dataURI = `url(data:image/svg+xml;base64,${btoa(svgString)})`
 
   return (
-    <div className="icon" style={{ background: dataURI, width: 60, height: 60 }}></div>
+    <div className="icon" style={{ background: dataURI, width: +props.size, height: +props.size }}></div>
   )
 }
