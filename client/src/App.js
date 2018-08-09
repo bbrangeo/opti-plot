@@ -1,9 +1,19 @@
 import React, { Component } from 'react';
-import { Icon } from './Icon';
 import { CropInfo } from './Plot/CropInfo'
 import { Grid, AppBar, Toolbar, Typography } from '@material-ui/core';
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+import {green, brown} from '@material-ui/core/colors';
 import axios from 'axios';
 
+
+const theme = createMuiTheme({
+  palette: {
+    primary: green,
+    secondary: {
+      main: brown,
+    },
+  },
+});
 
 class App extends Component {
   constructor(props) {
@@ -59,18 +69,24 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <AppBar>
-          <Toolbar>
-            <Typography variant="title" color="inherit">
-              OPTIPLOT
-          </Typography>
-          </Toolbar>
-        </AppBar>
+      <MuiThemeProvider theme={theme}>
         <div>
-          <CropInfo></CropInfo>
+          <AppBar position="fixed" color="primary">
+            <Toolbar>
+              <Typography variant="title" color="secondary">
+                OPTIPLOT
+            </Typography>
+            </Toolbar>
+          </AppBar>
+          <div>
+            <Grid container justify="center" spacing={16}>
+                <Grid item xs={8} >
+                  <CropInfo />
+                </Grid>
+            </Grid>
+          </div>
         </div>
-      </div>
+      </MuiThemeProvider>
     );
   }
 }
