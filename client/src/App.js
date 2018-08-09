@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Icon } from './Icon';
-import { Grid, AppBar, Toolbar, Typography, Grow } from '@material-ui/core';
+import { Grid, AppBar, Toolbar, Typography } from '@material-ui/core';
 import axios from 'axios';
 
 
@@ -10,10 +10,7 @@ class App extends Component {
     this.state = {
       data: null,
       companions: null,
-      grown: false
     }
-    this.growThatShit = this.growThatShit.bind(this)
-
   }
 
   componentDidMount() {
@@ -25,13 +22,6 @@ class App extends Component {
           companions: response.data.included
         })
       })
-  }
-
-  growThatShit() {
-    
-    this.setState({
-      grown: !this.state.grown
-    })
   }
 
   render() {
