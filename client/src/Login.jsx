@@ -67,7 +67,10 @@ class Login extends Component {
     return (
       <span>
         <Button onClick={this.handleOpen}>Login</Button>
-        <Modal open={this.state.open} oncClose={this.handleClose}>
+        <Modal open={this.state.open}
+          oncClose={this.handleClose}
+          onEscapeKeyDown={this.handleClose}
+          onBackdropClick={this.handleClose} >
           <div className="auth-modal" >
 
           <p>{this.state.response ? this.state.response.message : ''}</p>

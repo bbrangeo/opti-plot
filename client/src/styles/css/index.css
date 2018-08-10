@@ -9,18 +9,24 @@ body {
 
 .auth-modal {
   background: #FFF;
-  height: 200px;
-  width: 200px;
+  height: 300px;
+  width: 300px;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); }
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center; }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg); }
-  to {
-    transform: rotate(360deg); } }
+.welcome-banner {
+  background: #291D18;
+  color: #FFF;
+  padding: 2em;
+  width: 100%;
+  height: 100%; }
+  .welcome-banner h1 {
+    font-family: 'Codystar', Helvetica, Arial, Helvetica, sans-serif; }
 
 .companion-stub {
   background: #eee;

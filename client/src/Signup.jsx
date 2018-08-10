@@ -66,7 +66,10 @@ class Signup extends Component {
     return (
       <span>
         <Button onClick={this.handleOpen}>Sign Up</Button>
-        <Modal open={this.state.open} oncClose={this.handleClose}>
+        <Modal open={this.state.open} 
+          oncClose={this.handleClose}
+          onEscapeKeyDown={this.handleClose}
+          onBackdropClick={this.handleClose} >
           <div className="auth-modal" >
             <form onSubmit={this.handleSubmit}>
               Name: <input type="text"

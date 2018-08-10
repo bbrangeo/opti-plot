@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { RootContext } from './RootContext';
 import { CropInfo } from './Plot/CropInfo'
+import { Welcome } from './Welcome'
 import { Nav } from './Nav';
 import SimpleModal from './SimpleModal';
 import { Grid, AppBar, Toolbar, Typography, Modal } from '@material-ui/core';
@@ -75,7 +76,7 @@ class App extends Component {
   render() {
     const user = this.state.user;
 
-    let jsx = user ? <CropInfo /> : <SimpleModal content={<Login liftTokenToState={this.liftTokenToState} />} />
+    let jsx = user ? <Welcome /> : "Please login or signup"
 
 
 
