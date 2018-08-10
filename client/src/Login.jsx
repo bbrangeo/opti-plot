@@ -14,15 +14,17 @@ class Login extends Component {
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleOpen = this.handleOpen.bind(this);
+    this.handleClose = this.handleClose.bind(this);
   }
 
-  handleOpen = () => {
+  handleOpen() {
     this.setState({
       open: true
     })
   }
 
-  handleClose = () => {
+  handleClose() {
     this.setState({
       open: false
     })
@@ -61,10 +63,13 @@ class Login extends Component {
   }
 
   render() {
+    const {classes} = this.props
     return (
-      <div>
+      <span>
         <Button onClick={this.handleOpen}>Login</Button>
         <Modal open={this.state.open} oncClose={this.handleClose}>
+          <div className="auth-modal" >
+
           <p>{this.state.response ? this.state.response.message : ''}</p>
           <form onSubmit={this.handleSubmit}>
             Email: <input type="email"
@@ -77,8 +82,9 @@ class Login extends Component {
             />
             <input type="submit" value="Log In" />
           </form>
+          </div>
         </Modal>
-      </div>
+      </span>
     )
   }
 }

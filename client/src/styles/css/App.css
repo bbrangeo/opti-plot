@@ -6,6 +6,15 @@ body {
   color: #FFF;
   font-weight: bold; }
 
+.auth-modal {
+  background: #FFF;
+  height: 200px;
+  width: 200px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); }
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg); }

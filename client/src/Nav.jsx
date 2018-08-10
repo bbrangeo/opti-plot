@@ -1,20 +1,20 @@
 import React from 'react';
 import Login from './Login';
-
+import Signup from './Signup';
 import { AppBar, Toolbar, Button } from '@material-ui/core';
 
 export const Nav = props => {
   let authButtons;
   if (!props.user) {
     authButtons = (
-      <span>
+      <span style={{display: 'inline-block'}}>
         <Login liftTokenToState={props.liftTokenToState} />
-        <Button>Sign Up</Button>
+        <Signup liftTokenToState={props.liftTokenToState} />
       </span>
     ) 
   } else {
     authButtons = (
-      <span>
+      <span style={{ display: 'inline-block' }}>
       	<Button onClick={props.logout} >Logout</Button>
       	<Button>My Gardens</Button>
       </span>
