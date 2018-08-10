@@ -2,6 +2,7 @@ import React from 'react';
 import { RootContext } from './RootContext';
 import { WelcomeBanner } from './WelcomeBanner';
 import DashPanel from './DashPanel';
+import DashList from './DashList';
 import axios from 'axios';
 import { Grid } from '@material-ui/core';
 
@@ -22,7 +23,8 @@ export const Welcome = props => {
               <DashPanel />
             </Grid>
             <Grid item xs={12} md={6}>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt nulla inventore quas ab molestiae autem, ea, facere quisquam nemo ullam soluta expedita ad at sapiente nam. Laboriosam dicta repellat beatae!</p>
+              <DashList />
+              {/* <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt nulla inventore quas ab molestiae autem, ea, facere quisquam nemo ullam soluta expedita ad at sapiente nam. Laboriosam dicta repellat beatae!</p> */}
             </Grid>
           </Grid>
           )
