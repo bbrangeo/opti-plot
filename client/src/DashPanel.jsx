@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -15,14 +16,18 @@ const DashPanel = props => {
   return (
     <div>
       <div>
-        <Button size="large" variant="contained" color="primary" className={classes.button}>
-          Add a Garden
-        </Button>
+        <Link className="link-btn" to='/gardens/new/'>
+          <Button size="large" variant="contained" color="primary" className={classes.button}>
+            Add a Garden
+          </Button>
+        </Link>
       </div>
       <div>
-        <Button size="large" variant="contained" color="primary" className={classes.button}>
-          Add a Plot
-        </Button>
+        <Link className="link-btn" to='/plots/new'>
+          <Button size="large" variant="contained" color="primary" className={classes.button}>
+            Add a Plot
+          </Button>
+        </Link>
       </div>
     </div>
   )

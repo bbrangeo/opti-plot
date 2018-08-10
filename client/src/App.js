@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Path } from 'react-router-dom';
 import { RootContext } from './RootContext';
 import { CropInfo } from './Plot/CropInfo'
 import { Welcome } from './Welcome'
@@ -84,6 +85,7 @@ class App extends Component {
 
 
     return (
+      <Router>
         <MuiThemeProvider theme={theme}>
           <Nav user={this.state.user} logout={this.logout} liftTokenToState={this.liftTokenToState} />
           <div>
@@ -98,6 +100,7 @@ class App extends Component {
             </div>
           </div>
         </MuiThemeProvider>
+      </Router>
     );
   }
 }
