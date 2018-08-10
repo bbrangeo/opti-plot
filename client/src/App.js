@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Path } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { RootContext } from './RootContext';
-import { CropInfo } from './Plot/CropInfo'
 import { Welcome } from './Welcome'
 import { NotLoggedIn } from './NotLoggedIn'
+import { CropInfo } from './Plot/CropInfo'
 import { Nav } from './Nav';
-import SimpleModal from './SimpleModal';
-import { Grid, AppBar, Toolbar, Typography, Modal } from '@material-ui/core';
-import { createMuiTheme, getMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+import { Grid } from '@material-ui/core';
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import * as Colors from '@material-ui/core/colors';
 import axios from 'axios';
-import Signup from './Signup';
-import Login from './Login';
 
 
 const theme = createMuiTheme({
@@ -79,11 +76,8 @@ class App extends Component {
 
   render() {
     const user = this.state.user;
-
-    let app = user ? <Welcome /> : <NotLoggedIn />
-
-
-
+    let app = user ? Welcome : NotLoggedIn;
+    
     return (
       <Router>
         <MuiThemeProvider theme={theme}>
@@ -93,7 +87,11 @@ class App extends Component {
               <Grid container justify="center" spacing={16}>
                   <Grid item xs={8} >                  
                     <RootContext.Provider value={this.state}>
-                      {app}
+                      {/* {app} */}
+                      <Switch>
+                        <Route exact path='/' component={app} />
+                        <Route path='/crops' component={CropInfo} />
+                      </Switch>
                     </RootContext.Provider>
                   </Grid>
               </Grid>

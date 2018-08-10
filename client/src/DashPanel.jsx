@@ -29,6 +29,13 @@ const DashPanel = props => {
           </Button>
         </Link>
       </div>
+      <div>
+        <Link className="link-btn" to='/crops'>
+          <Button size="large" variant="contained" color="primary" className={classes.button}>
+            Research Crops
+          </Button>
+        </Link>
+      </div>
     </div>
   )
 }

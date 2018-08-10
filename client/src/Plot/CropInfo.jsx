@@ -41,11 +41,11 @@ export class CropInfo extends Component {
     return (
       <Grid container spacing={16}>
         <Grid item xs={12}>
-            <RootContext.Consumer>
+            {/* <RootContext.Consumer>
               { 
                 ({user}) => { return <h1>Hello {user.name}</h1> }
               }
-            </RootContext.Consumer>
+            </RootContext.Consumer> */}
             <h2>{name}</h2>
             <h4>{binomialName}</h4>
             <Grid container justify="center" spacing={16}>
