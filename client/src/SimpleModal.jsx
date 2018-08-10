@@ -57,7 +57,6 @@ class SimpleModal extends React.Component {
         >
           <div style={getModalStyle()} className={classes.paper}>
             {this.props.content}
-            <SimpleModalWrapped />
           </div>
         </Modal>
       </div>

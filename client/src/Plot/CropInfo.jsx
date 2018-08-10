@@ -29,9 +29,9 @@ export class CropInfo extends Component {
     const companions = this.state.companions ? this.state.companions.map((companion, i) => {
       return (
         <Grid item xs={12} lg={3} key={i}>
-          <div>
-            <h4>{companion.attributes.name}</h4>
+          <div className="companion-stub">
             <Icon src={companion.attributes.svg_icon} size="40" />
+            <h4>{companion.attributes.name}</h4>
           </div>
         </Grid>
       )
@@ -50,7 +50,7 @@ export class CropInfo extends Component {
             <h4>{binomialName}</h4>
             <Grid container justify="center" spacing={16}>
               <Grid item xs={12} md={3}>
-                <Icon src={iconString} size="60" />
+                <Icon src={iconString} size="100" />
               </Grid>
               <Grid item xs={12} md={9}>
                 <p>{description}</p>

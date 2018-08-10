@@ -9,6 +9,6 @@ export const Icon = props => {
   const dataURI = `url(data:image/svg+xml;base64,${btoa(svgString)})`
 
   return (
-    <div className="icon" style={{ background: dataURI, width: +props.size, height: +props.size }}></div>
+    <div className="icon" style={{ background: dataURI, width: +props.size, height: +props.size, margin: 'auto' }}></div>
   )
 }

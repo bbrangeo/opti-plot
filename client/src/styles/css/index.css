@@ -4,7 +4,7 @@ body {
 
 .nav-logo {
   font-family: 'Codystar';
-  color: #FFF !important;
+  color: #FFF;
   font-weight: bold; }
 
 @keyframes App-logo-spin {
@@ -12,5 +12,9 @@ body {
     transform: rotate(0deg); }
   to {
     transform: rotate(360deg); } }
+
+.companion-stub {
+  background: #eee;
+  text-align: center; }
 
 /*# sourceMappingURL=index.css.map */

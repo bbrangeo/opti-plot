@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import { RootContext } from './RootContext';
 import { CropInfo } from './Plot/CropInfo'
 import { Nav } from './Nav';
-import SimpleModal from './SimpleModal'
+import SimpleModal from './SimpleModal';
 import { Grid, AppBar, Toolbar, Typography, Modal } from '@material-ui/core';
 import { createMuiTheme, getMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import * as Colors from '@material-ui/core/colors';
 import axios from 'axios';
 import Signup from './Signup';
+import Login from './Login';
 
 
 const theme = createMuiTheme({
@@ -74,22 +75,18 @@ class App extends Component {
   render() {
     const user = this.state.user;
 
-    let jsx = user ? <CropInfo /> : <SimpleModal content={<Signup liftTokenToState={this.liftTokenToState} />} />
+    let jsx = user ? <CropInfo /> : <SimpleModal content={<Login liftTokenToState={this.liftTokenToState} />} />
 
 
 
     return (
         <MuiThemeProvider theme={theme}>
+            <Nav user={this.state.user} logout={this.logout} liftTokenToState={this.liftTokenToState} />
           <div>
-            <Nav />
             <div>
               <Grid container justify="center" spacing={16}>
                   <Grid item xs={8} >
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
+                  
                     <RootContext.Provider value={this.state}>
                       {jsx}
                     </RootContext.Provider>

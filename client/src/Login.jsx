@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import { Modal, Button } from '@material-ui/core';
 import axios from 'axios';
 
 class Login extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      open: false,
       email: '',
       password: '',
       response: null
@@ -12,6 +14,18 @@ class Login extends Component {
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleOpen = () => {
+    this.setState({
+      open: true
+    })
+  }
+
+  handleClose = () => {
+    this.setState({
+      open: false
+    })
   }
 
   handleEmailChange(e) {
@@ -38,7 +52,7 @@ class Login extends Component {
         })
       } else {
         localStorage.setItem('mernToken', result.data.token)
-        this.props.liftToken(result.data);
+        this.props.liftTokenToState(result.data);
         this.setState({
           response: null,
         })
@@ -49,18 +63,21 @@ class Login extends Component {
   render() {
     return (
       <div>
-        <p>{this.state.response ? this.state.response.message : ''}</p>
-        <form onSubmit={this.handleSubmit}>
-          Email: <input type="email"
-            value={this.state.email}
-            onChange={this.handleEmailChange}
-          /> <br />
-          Password: <input type="password"
-            value={this.state.password}
-            onChange={this.handlePasswordChange}
-          />
-          <input type="submit" value="Log In" />
-        </form>
+        <Button onClick={this.handleOpen}>Login</Button>
+        <Modal open={this.state.open} oncClose={this.handleClose}>
+          <p>{this.state.response ? this.state.response.message : ''}</p>
+          <form onSubmit={this.handleSubmit}>
+            Email: <input type="email"
+              value={this.state.email}
+              onChange={this.handleEmailChange}
+            /> <br />
+            Password: <input type="password"
+              value={this.state.password}
+              onChange={this.handlePasswordChange}
+            />
+            <input type="submit" value="Log In" />
+          </form>
+        </Modal>
       </div>
     )
   }

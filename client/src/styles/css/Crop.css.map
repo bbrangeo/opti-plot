@@ -1,0 +1,9 @@
+{
+	"version": 3,
+	"file": "Crop.css",
+	"sources": [
+		"../scss/Crop.scss"
+	],
+	"names": [],
+	"mappings": "AAAA,AAAA,eAAe,CAAC;EACd,UAAU,EAAE,IAAI;EAChB,UAAU,EAAE,MAAM,GAEnB"
+}
