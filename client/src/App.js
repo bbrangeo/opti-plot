@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+// import { RootContext } from './RootContext';
 import { CropInfo } from './Plot/CropInfo'
+import { Nav } from './Nav';
 import SimpleModal from './SimpleModal'
 import { Grid, AppBar, Toolbar, Typography, Modal } from '@material-ui/core';
 import { createMuiTheme, getMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
@@ -72,34 +74,28 @@ class App extends Component {
   render() {
     const user = this.state.user;
 
-    let jsx = user ? <CropInfo /> : <SimpleModal content={<Signup liftTokenToState={this.liftTokenToState} />} />
+    let jsx = user ? <CropInfo user={user} /> : <SimpleModal content={<Signup liftTokenToState={this.liftTokenToState} />} />
 
 
 
     return (
-      <MuiThemeProvider theme={theme}>
-        <div>
-          <AppBar position="fixed" color="primary">
-            <Toolbar>
-              {/* <Typography variant="title" color="textPrimary"> */}
-                <h1 className="nav-bar">OPTIPLOT</h1>
-              {/* </Typography> */}
-            </Toolbar>
-          </AppBar>
+        <MuiThemeProvider theme={theme}>
           <div>
-            <Grid container justify="center" spacing={16}>
-                <Grid item xs={8} >
-                  <br />
-                  <br />
-                  <br />
-                  <br />
-                  <br />
-                  {jsx}
-                </Grid>
-            </Grid>
+            <Nav />
+            <div>
+              <Grid container justify="center" spacing={16}>
+                  <Grid item xs={8} >
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    {jsx}
+                  </Grid>
+              </Grid>
+            </div>
           </div>
-        </div>
-      </MuiThemeProvider>
+        </MuiThemeProvider>
     );
   }
 }
