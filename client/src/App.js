@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import { RootContext } from './RootContext';
+import { RootContext } from './RootContext';
 import { CropInfo } from './Plot/CropInfo'
 import { Nav } from './Nav';
 import SimpleModal from './SimpleModal'
@@ -74,7 +74,7 @@ class App extends Component {
   render() {
     const user = this.state.user;
 
-    let jsx = user ? <CropInfo user={user} /> : <SimpleModal content={<Signup liftTokenToState={this.liftTokenToState} />} />
+    let jsx = user ? <CropInfo /> : <SimpleModal content={<Signup liftTokenToState={this.liftTokenToState} />} />
 
 
 
@@ -90,7 +90,9 @@ class App extends Component {
                     <br />
                     <br />
                     <br />
-                    {jsx}
+                    <RootContext.Provider value={this.state}>
+                      {jsx}
+                    </RootContext.Provider>
                   </Grid>
               </Grid>
             </div>

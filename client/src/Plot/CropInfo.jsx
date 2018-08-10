@@ -23,9 +23,9 @@ export class CropInfo extends Component {
   }
 
   render() {
-    const name = this.state.data ? this.state.data.name : ''
-    const binomialName = this.state.data.binomial_name ? this.state.data.binomial_name : ''
-    const description = this.state.data.description ? this.state.data.description : ''
+    const name = this.state.data ? this.state.data.attributes.name : ''
+    const binomialName = this.state.data ? this.state.data.attributes.binomial_name : ''
+    const description = this.state.data ? this.state.data.attributes.description : ''
     const companions = this.state.companions ? this.state.companions.map((companion, i) => {
       return (
         <Grid item xs={12} lg={3} key={i}>
@@ -41,20 +41,22 @@ export class CropInfo extends Component {
     return (
       <Grid container spacing={16}>
         <Grid item xs={12}>
-          <div className="App">
-              <h1>Hello {this.props.user.name}</h1>
-              <h2>{name}</h2>
-              <h4>{binomialName}</h4>
-              <Grid container spacing={16}>
-                <Grid item xs={12} md={3}>
-                  <Icon src={iconString} size="60" />
-                </Grid>
-                <Grid item xs={12} md={9}>
-                  <p>{description}</p>
-
-                </Grid>
+            <RootContext.Consumer>
+              { 
+                ({user}) => { return <h1>Hello {user.name}</h1> }
+              }
+            </RootContext.Consumer>
+            <h2>{name}</h2>
+            <h4>{binomialName}</h4>
+            <Grid container justify="center" spacing={16}>
+              <Grid item xs={12} md={3}>
+                <Icon src={iconString} size="60" />
               </Grid>
-          </div>
+              <Grid item xs={12} md={9}>
+                <p>{description}</p>
+
+              </Grid>
+            </Grid>
         </Grid>
         {companions}
       </Grid>
