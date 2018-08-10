@@ -32,7 +32,15 @@ body {
   }
 }
 
-.dash-list {
-  border: 2px solid #291D18;
+.dash-box {
+  border: 2px solid rgba(41, 29, 24, 0.679);
   padding: 2em;
+  margin: 1em;
+}
+
+.not-logged-in {
+  background: url('../../img/notloggedin.jpeg');
+  background-size: cover;
+  background-position: center;
+  height: 40vh;
 }

@@ -26,20 +26,22 @@ const DashList = props => {
   const { classes } = props;
 
   return (
-    <List className={classes.root} subheader={<li />}>
-      {[1, 2, 3, 4].map(sectionId => (
-        <li key={`section-${sectionId}`} className={classes.listSection}>
-          <ul className={classes.ul}>
-            <ListSubheader>{`Garden: ${sectionId}`}</ListSubheader>
-            {[1, 2].map(item => (
-              <ListItem key={`item-${sectionId}-${item}`} className={classes.ListItem} >
-                <ListItemText primary={`Plot ${item}`} />
-              </ListItem>
-            ))}
-          </ul>
-        </li>
-      ))}
-    </List>
+    <div className="dash-box">
+      <List className={classes.root} subheader={<li />}>
+        {[1, 2, 3, 4].map(sectionId => (
+          <li key={`section-${sectionId}`} className={classes.listSection}>
+            <ul className={classes.ul}>
+              <ListSubheader>{`Garden: ${sectionId}`}</ListSubheader>
+              {[1, 2].map(item => (
+                <ListItem key={`item-${sectionId}-${item}`} className={classes.ListItem} >
+                  <ListItemText primary={`Plot ${item}`} />
+                </ListItem>
+              ))}
+            </ul>
+          </li>
+        ))}
+      </List>
+    </div>
   )
 }
 

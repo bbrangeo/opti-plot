@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { RootContext } from './RootContext';
 import { CropInfo } from './Plot/CropInfo'
 import { Welcome } from './Welcome'
+import { NotLoggedIn } from './NotLoggedIn'
 import { Nav } from './Nav';
 import SimpleModal from './SimpleModal';
 import { Grid, AppBar, Toolbar, Typography, Modal } from '@material-ui/core';
@@ -78,20 +79,19 @@ class App extends Component {
   render() {
     const user = this.state.user;
 
-    let jsx = user ? <Welcome /> : "Please login or signup"
+    let app = user ? <Welcome /> : <NotLoggedIn />
 
 
 
     return (
         <MuiThemeProvider theme={theme}>
-            <Nav user={this.state.user} logout={this.logout} liftTokenToState={this.liftTokenToState} />
+          <Nav user={this.state.user} logout={this.logout} liftTokenToState={this.liftTokenToState} />
           <div>
             <div>
               <Grid container justify="center" spacing={16}>
-                  <Grid item xs={8} >
-                  
+                  <Grid item xs={8} >                  
                     <RootContext.Provider value={this.state}>
-                      {jsx}
+                      {app}
                     </RootContext.Provider>
                   </Grid>
               </Grid>
