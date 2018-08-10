@@ -27,11 +27,11 @@ const DashList = props => {
 
   return (
     <List className={classes.root} subheader={<li />}>
-      {[0, 1, 2, 3, 4].map(sectionId => (
+      {[1, 2, 3, 4].map(sectionId => (
         <li key={`section-${sectionId}`} className={classes.listSection}>
           <ul className={classes.ul}>
             <ListSubheader>{`Garden: ${sectionId}`}</ListSubheader>
-            {[0, 1, 2].map(item => (
+            {[1, 2].map(item => (
               <ListItem key={`item-${sectionId}-${item}`} className={classes.ListItem} >
                 <ListItemText primary={`Plot ${item}`} />
               </ListItem>

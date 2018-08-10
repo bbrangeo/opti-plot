@@ -27,4 +27,8 @@ body {
   .welcome-banner h1 {
     font-family: 'Codystar', Helvetica, Arial, Helvetica, sans-serif; }
 
+.dash-list {
+  border: 2px solid #291D18;
+  padding: 2em; }
+
 /*# sourceMappingURL=App.css.map */
