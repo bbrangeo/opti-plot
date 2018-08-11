@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { RootContext } from './RootContext';
-import { Welcome } from './Welcome'
-import { NotLoggedIn } from './NotLoggedIn'
-import { CropInfo } from './Plot/CropInfo'
+import { Welcome } from './Welcome';
+import { NotLoggedIn } from './NotLoggedIn';
+import { CropInfo } from './Plot/CropInfo';
+import CropSearch from './Crop/CropSearch';
 import { Nav } from './Nav';
 import { Grid } from '@material-ui/core';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
@@ -90,7 +91,7 @@ class App extends Component {
                       {/* {app} */}
                       <Switch>
                         <Route exact path='/' component={app} />
-                        <Route path='/crops' component={CropInfo} />
+                        <Route path='/crops' component={ () => <CropSearch /> } />
                       </Switch>
                     </RootContext.Provider>
                   </Grid>

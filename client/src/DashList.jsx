@@ -33,7 +33,7 @@ const DashList = props => {
               <ListSubheader>{garden.name}</ListSubheader>
               { garden.plots.map( plot => (
                 <ListItem key={`item-${garden.name}-${plot.name}`} className={classes.ListItem} >
-                  <ListItemText primary={`Plot: ${plot.name}`} />
+                  <ListItemText primary={plot.name} />
                 </ListItem>
               ))}
             </ul>
