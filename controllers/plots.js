@@ -1,9 +1,21 @@
 const express = require('express')
 const router = express.Router()
+const Plots = require('../models/Plot')
 
-// /plots
+// GET /plots
 router.get('/', (req, res) => {
-	res.send('plots')
+	Plot.find({}, (err, plots) => {
+		err ? res.send(err) : res.json(plots)
+	})
 })
+
+// POST /plots
+router.post('/', (req, res) => {
+	Plot.create({
+		
+	})
+})
+
+
 
 module.exports = router;

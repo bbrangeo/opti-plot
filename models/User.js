@@ -5,6 +5,7 @@ const userSchema = new mongoose.Schema({
 	name: String,
 	email: { type: String, required: false },
 	password: { type: String, required: false },
+	gardens: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Garden' }]
 })
 
 userSchema.set('toObject', {
@@ -12,7 +13,8 @@ userSchema.set('toObject', {
 		let returnJson = {
 			_id: ret._id,
 			name: ret.name,
-			email: ret.email
+			email: ret.email,
+			gardens: ret.gardens
 		}
 		return returnJson;
 	}

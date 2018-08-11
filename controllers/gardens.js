@@ -5,9 +5,11 @@ const User = require('../models/User');
 const Garden = require('../models/Garden');
 
 
-// /gardens
+// GET /gardens
 router.get('/', (req, res) => {
-	res.send('garden')
+	Garden.find({}, (err, gardens) => {
+		err? res.send(err) : res.json(gardens);
+	})
 })
 
 // POST /gardens
@@ -15,8 +17,13 @@ router.post('/', (req, res) => {
 	Garden.create({
 		name: req.body.params,
 		userId: req.body.user_id
-	}, (err) => {
-		err ? console.log(err) : res.sendStatus(200);
+	}, (err, garden) => {
+		err ? res.send(err) : 
+		User.findById(req.body.user_id).then( (user) => {
+			user.gardens.push(garden._id)
+			user.save();
+			res.sendStatus(200);
+		})
 	})
 })
 

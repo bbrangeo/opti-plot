@@ -13,7 +13,8 @@ const plotSchema = new mongoose.Schema({
 	season: String,
 	length: Number,
 	width: Number,
-	crops: [cropSchema]
+	crops: [cropSchema],
+	gardenId: {type: mongoose.Schema.Types.ObjectId, ref: 'Garden'}
 })
 
 const Plot = mongoose.model('Plot', plotSchema)
