@@ -1,11 +1,15 @@
 body {
   font-family: Helvetica, Arial, sans-serif; }
 
+.text-plot {
+  font-family: "Codystar", Arial, Helvetica, sans-serif;
+  font-weight: bold; }
+
 .link-btn {
   text-decoration: none; }
 
 .nav-logo {
-  font-family: 'Codystar';
+  font-family: "Codystar", Arial, Helvetica, sans-serif;
   color: #FFF;
   font-weight: bold; }
 
@@ -28,7 +32,7 @@ body {
   width: 100%;
   height: 100%; }
   .welcome-banner h1 {
-    font-family: 'Codystar', Helvetica, Arial, Helvetica, sans-serif; }
+    font-family: "Codystar", Arial, Helvetica, sans-serif; }
 
 .dash-box {
   border: 2px solid rgba(41, 29, 24, 0.679);
