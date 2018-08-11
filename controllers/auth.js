@@ -71,13 +71,16 @@ router.post('/me/from/token', (req, res) => {
 			if (err) {
 				res.status(401).json(err);
 			} else {
-				User.findById(user._id, function (err, user) {
-					if (err) {
-						res.status(401).json(err);
-					} else {
-						res.json({ user, token });
-					}
-				})
+				User.findById(user._id)
+					.populate('gardens')
+					.exec( function (err, user) {
+							if (err) {
+								res.status(401).json(err);
+							} else {
+								res.json({ user, token });
+							}
+						}
+					)
 			}
 		})
 	}

@@ -25,23 +25,37 @@ const styles = theme => ({
 const DashList = props => {
   const { classes } = props;
 
+  // const list = props.user.gardens ? (
+  //   <div className="dash-box">
+  //     <List className={classes.root} subheader={<li />}>
+  //       {props.user.gardens.map(garden => (
+  //         <li key={`section-${garden._id}`} className={classes.listSection}>
+  //           <ul className={classes.ul}>
+  //             <ListSubheader>{`Garden: ${garden.name}`}</ListSubheader>
+  //             {/* {garden.plots.map( plot => (
+  //               <ListItem key={`item-${garden.name}-${plot.name}`} className={classes.ListItem} >
+  //                 <ListItemText primary={`Plot ${plot.name}`} />
+  //               </ListItem>
+  //             ))} */}
+  //           </ul>
+  //         </li>
+  //       ))}
+  //     </List>
+  //   </div>
+  // ) : <p>no gardens yet</p>;
+
+  let list;
+  console.log(props.user)
+  if (props.user) {
+    list = props.user.gardens.map(garden => <li key={garden._id}>{garden.name}</li>)
+  } else {
+    list = <li>No gardens yet</li>
+  }
+
   return (
-    <div className="dash-box">
-      <List className={classes.root} subheader={<li />}>
-        {[1, 2, 3, 4].map(sectionId => (
-          <li key={`section-${sectionId}`} className={classes.listSection}>
-            <ul className={classes.ul}>
-              <ListSubheader>{`Garden: ${sectionId}`}</ListSubheader>
-              {[1, 2].map(item => (
-                <ListItem key={`item-${sectionId}-${item}`} className={classes.ListItem} >
-                  <ListItemText primary={`Plot ${item}`} />
-                </ListItem>
-              ))}
-            </ul>
-          </li>
-        ))}
-      </List>
-    </div>
+    <ul>
+      {list}
+    </ul>
   )
 }
 
