@@ -1,6 +1,8 @@
 const express = require('express')
 const router = express.Router()
-const Plots = require('../models/Plot')
+const Plot = require('../models/Plot')
+const Garden = require('../models/Garden')
+const User = require('../models/User')
 
 // GET /plots
 router.get('/', (req, res) => {
@@ -11,8 +13,20 @@ router.get('/', (req, res) => {
 
 // POST /plots
 router.post('/', (req, res) => {
+	console.log()
 	Plot.create({
-		
+		name: req.body.name,
+		season: req.body.season,
+		length: req.body.length,
+		width: req.body.width,
+		gardenId: req.body.gardenId
+	}, (err, plot) => {
+		Garden.findById(req.body.gardenId, (err, garden) => {
+			err ? res.send(err) :
+			garden.plots.push(plot._id)
+			garden.save();
+			res.sendStatus(200);
+		})
 	})
 })
 

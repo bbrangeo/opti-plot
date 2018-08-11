@@ -14,14 +14,11 @@ router.get('/', (req, res) => {
 
 // POST /gardens
 router.post('/', (req, res) => {
-	console.log('<><>< GARDEN POST', req.body.userId)
 	Garden.create({
 		name: req.body.name,
 		userId: req.body.userId
 	}, (err, garden) => {
-		console.log("________________________GARDEN CREATED",garden)
 		User.findById(req.body.userId, function (err, user) {
-			console.log("___USER => ", user)
 			err ? res.send(err) : 
 			user.gardens.push(garden._id)
 			user.save();
