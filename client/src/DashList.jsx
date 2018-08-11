@@ -25,37 +25,29 @@ const styles = theme => ({
 const DashList = props => {
   const { classes } = props;
 
-  // const list = props.user.gardens ? (
-  //   <div className="dash-box">
-  //     <List className={classes.root} subheader={<li />}>
-  //       {props.user.gardens.map(garden => (
-  //         <li key={`section-${garden._id}`} className={classes.listSection}>
-  //           <ul className={classes.ul}>
-  //             <ListSubheader>{`Garden: ${garden.name}`}</ListSubheader>
-  //             {/* {garden.plots.map( plot => (
-  //               <ListItem key={`item-${garden.name}-${plot.name}`} className={classes.ListItem} >
-  //                 <ListItemText primary={`Plot ${plot.name}`} />
-  //               </ListItem>
-  //             ))} */}
-  //           </ul>
-  //         </li>
-  //       ))}
-  //     </List>
-  //   </div>
-  // ) : <p>no gardens yet</p>;
-
-  let list;
+  const list = props.user.gardens ? 
+      <List className={classes.root} subheader={<li />}>
+        {props.user.gardens.map(garden => (
+          <li key={`section-${garden._id}`} className={classes.listSection}>
+            <ul className={classes.ul}>
+              <ListSubheader>{garden.name}</ListSubheader>
+              { garden.plots.map( plot => (
+                <ListItem key={`item-${garden.name}-${plot.name}`} className={classes.ListItem} >
+                  <ListItemText primary={`Plot: ${plot.name}`} />
+                </ListItem>
+              ))}
+            </ul>
+          </li>
+        ))}
+      </List>
+   : <p>no gardens yet</p>;
   console.log(props.user)
-  if (props.user) {
-    list = props.user.gardens.map(garden => <li key={garden._id}>{garden.name}</li>)
-  } else {
-    list = <li>No gardens yet</li>
-  }
 
   return (
-    <ul>
-      {list}
-    </ul>
+    <div className="dash-box">
+      <h4>My Gardens</h4>
+        {list}
+    </div>
   )
 }
 
