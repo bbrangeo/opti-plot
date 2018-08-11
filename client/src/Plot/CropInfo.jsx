@@ -58,6 +58,7 @@ export class CropInfo extends Component {
               </Grid>
             </Grid>
         </Grid>
+        
         {companions}
       </Grid>
     )
