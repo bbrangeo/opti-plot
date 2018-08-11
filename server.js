@@ -25,7 +25,7 @@ app.get('*', (req, res) => {
 });
 const port = process.env.PORT || 3001;
 const server = app.listen(port, () => {
-	console.log(`🔥 🍅 server running on ${port} 🍅 🔥`)
+	console.log(`🔥 🍅 roasting tomatoes on ${port}🍅 🔥`)
 })
 
 module.exports = server;
