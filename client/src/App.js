@@ -5,6 +5,7 @@ import { Welcome } from './Welcome';
 import { NotLoggedIn } from './NotLoggedIn';
 import { CropInfo } from './Plot/CropInfo';
 import CropSearch from './Crop/CropSearch';
+import GardenShow from './Garden/GardenShow';
 import { Nav } from './Nav';
 import { Grid } from '@material-ui/core';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
@@ -77,6 +78,7 @@ class App extends Component {
 
   render() {
     const user = this.state.user;
+    // TODO: wrap the rest of app in user?
     let app = user ? Welcome : NotLoggedIn;
     
     return (
@@ -91,6 +93,7 @@ class App extends Component {
                       {/* {app} */}
                       <Switch>
                         <Route exact path='/' component={app} />
+                        <Route path='/gardens/:id' component={ (props) => <GardenShow user={user} {...props} />} />
                         <Route path='/crops' component={ () => <CropSearch user={user} /> } />
                       </Switch>
                     </RootContext.Provider>

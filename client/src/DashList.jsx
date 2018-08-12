@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { List, ListSubheader, ListItem, ListItemText } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -30,7 +31,7 @@ const DashList = props => {
         {props.user.gardens.map(garden => (
           <li key={`section-${garden._id}`} className={classes.listSection}>
             <ul className={classes.ul}>
-              <ListSubheader>{garden.name}</ListSubheader>
+              <ListSubheader><Link to={`/gardens/${garden._id}`} className="link-btn">{garden.name}</Link></ListSubheader>
               { garden.plots.map( plot => (
                 <ListItem key={`item-${garden.name}-${plot.name}`} className={classes.ListItem} >
                   <ListItemText primary={plot.name} />

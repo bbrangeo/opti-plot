@@ -7,16 +7,41 @@ export class CropSearchResult extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      result: null
+      result: null,
+      gardens: [],
     }
+    this.addToGarden = this.addToGarden.bind(this)
   }
 
   componentDidMount() {
+    this.setState({
+      gardens: this.props.user.gardens
+    })
     axios.get(`https://openfarm.cc/api/v1/crops/${this.props.crop}`).then(response => {
       this.setState({
         result: response.data.data,
       })
-    })
+    }).catch( err => console.log(err));
+  }
+
+  addToGarden(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    console.log('TARGET',e.currentTarget);
+    let cropToAdd = {
+      name: this.state.result.attributes.name,
+      spread: this.state.result.attributes.spread,
+      rowSpacing: this.state.result.attributes.row_spacing,
+      icon: this.state.result.attributes.svg_icon,
+      ofId: this.state.result.id,
+      sunRequirements: this.state.result.attributes.sun_requirements,
+    }
+    console.log("CROP",cropToAdd);
+    axios.put(e.currentTarget.href, cropToAdd).then( response => {
+      console.log("RESPONSE", response)
+
+    }).catch( err => console.error(err))
+    
   }
 
   render() {
@@ -24,8 +49,8 @@ export class CropSearchResult extends Component {
     const binomialName = this.state.result ? this.state.result.attributes.binomial_name : ''
     const description = this.state.result ? this.state.result.attributes.description : ''
     let iconString = this.state.result ? this.state.result.attributes.svg_icon : ''
-    const gardens = this.props.user.gardens.map( garden => <Button variant="contained" color="primary">Add to {garden.name}</Button>)
-    console.log(this.props.user)
+    const gardens = this.props.user.gardens.map(garden => <Button href={`/gardens/${garden._id}/addcrop`} variant="contained" color="primary" onClick={this.addToGarden} children={`Add to ${garden.name}`} />)
+    // console.log(this.props.user)
     return (
       <div className="dash-box">
         <Grid container spacing={16} justify="center">
