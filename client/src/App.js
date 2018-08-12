@@ -94,28 +94,32 @@ class App extends Component {
   render() {
     const user = this.state.user;
     // TODO: wrap the rest of app in user?
-    let app = user ? Welcome : NotLoggedIn;
+    // let app = user ? Welcome : NotLoggedIn;
     // TODO: fix issue with plots not populating on login
+    let authorized = (
+      <RootContext.Provider value={this.state}>
+        <Switch>
+          <Route exact path='/' component={() => <Welcome />} />
+          <Route exact path='/gardens' component={() => <Gardens user={user} />} />
+          <Route exact path='/gardens/new' component={() => <GardenNew user={user} />} />
+          <Route path='/gardens/:id' component={(props) => <GardenShow user={user} {...props} />} />
+          <Route exact path='/plots/new' component={() => <PlotNew user={user} />} />
+          <Route path='/crops' component={() => <CropSearch user={user} />} />
+        </Switch>
+      </RootContext.Provider>
+    )
+    let notAuthorized = <NotLoggedIn />
+
     return (
       <Router>
         <MuiThemeProvider theme={theme}>
-          <Nav user={this.state.user} logout={this.logout} liftTokenToState={this.liftTokenToState} />
+          <Nav user={user} logout={this.logout} liftTokenToState={this.liftTokenToState} />
           <div>
             <div>
               <Grid container justify="center" spacing={16}>
-                  <Grid item xs={8} >                  
-                    <RootContext.Provider value={this.state}>
-                      {/* {app} */}
-                      <Switch>
-                        <Route exact path='/' component={app} />
-                        <Route exact path='/gardens' component={() => <Gardens user={user} /> } />
-                        <Route exact path='/gardens/new' component={() => <GardenNew user={user} /> } />
-                        <Route path='/gardens/:id' component={ (props) => <GardenShow user={user} {...props} />} />
-                        <Route exact path='/plots/new' component={() => <PlotNew user={user} /> } />
-                        <Route path='/crops' component={ () => <CropSearch user={user} /> } />
-                      </Switch>
-                    </RootContext.Provider>
-                  </Grid>
+                <Grid item xs={8} >
+                  { user ? authorized : notAuthorized }
+                </Grid>
               </Grid>
             </div>
           </div>

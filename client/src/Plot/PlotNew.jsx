@@ -3,13 +3,18 @@ import axios from 'axios';
 import { Button } from '@material-ui/core';
 
 class PlotNew extends Component {
-  state = {
-    name: '',
-    season: '',
-    length: '',
-    width: '',
-    gardenId: this.props.user.gardens[0]._id,
-    message: '',
+  constructor(props) {
+    super(props)
+    this.state = {
+      name: '',
+      season: '',
+      length: '',
+      width: '',
+      gardenId: this.props.user.gardens[0]._id,
+      message: '',
+    }
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange = (e) => {
