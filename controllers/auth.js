@@ -35,7 +35,11 @@ router.post('/signup', (req, res) => {
 })
 
 router.post('/login', (req, res) => {
-	User.findOne({ email: req.body.email }, function (err, user) {
+	User.findOne({ email: req.body.email })
+		.populate({
+			path: 'gardens',
+			populate: {path: 'plots'}
+		}).exec(function (err, user) {
 		if (user) {
 			if (user.authenticated(req.body.password)) {
 				var token = jwt.sign(user.toObject(), process.env.JWT_SECRET, {
@@ -74,9 +78,7 @@ router.post('/me/from/token', (req, res) => {
 				User.findById(user._id)
 					.populate({
 						path: 'gardens',
-						populate: {
-							path: 'plots'
-						}
+						populate: { path: 'plots' }
 					})
 					.exec( function (err, user) {
 							if (err) {

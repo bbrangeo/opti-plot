@@ -53,9 +53,8 @@ router.put('/:id', (req, res) => {
 // DELETE /gardens/:id
 router.delete('/:id', (req, res) => {
 	Garden.remove({_id: req.params.id}, (err) => {
-		res.send(err)
+		err ? res.send(err) : res.sendStatus(200);
 	})
-	res.sendStatus(200);
 })
 
 // PUT /gardens/:id/addcrop
@@ -79,6 +78,8 @@ router.put('/:id/addcrop', (req,res) => {
 		}
 	})
 })
+
+
 
 
 module.exports = router;
