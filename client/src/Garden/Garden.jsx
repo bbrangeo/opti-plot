@@ -1,15 +1,24 @@
 import React from 'react';
+import axios from 'axios';
+import { RootContext } from '../RootContext';
 import { Icon } from '../Icon';
-import { Grid } from '@material-ui/core';
+import { Grid, Button } from '@material-ui/core';
 
 export const Garden = props => {
   let garden = props.garden
+
+  const deleteGarden = (e) => {
+    e.stopPropagation();
+    axios.delete(`/gardens/${garden._id}`)
+      .then( response => console.log(response))
+  }
 
   return (
     <div className="dash-box">
       <Grid container spacing={16}>
         <Grid item xs={12}>
-          <h1>{garden.name}</h1>
+          <h1>{garden.name}</h1><Button variant="contained" onClick={(e) => {deleteGarden(e)}} color="secondary" >DELETE</Button>
+
         </Grid>
         <Grid container spacing={16} justify="center" alignContent="center" alignItems="center">
           <Grid item xs={12} md={3} className="dash-box">

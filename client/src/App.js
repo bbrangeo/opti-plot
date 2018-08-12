@@ -93,10 +93,7 @@ class App extends Component {
 
   render() {
     const user = this.state.user;
-    // TODO: wrap the rest of app in user?
-    // let app = user ? Welcome : NotLoggedIn;
-    // TODO: fix issue with plots not populating on login
-    let authorized = (
+    const authorized = (
       <RootContext.Provider value={this.state}>
         <Switch>
           <Route exact path='/' component={() => <Welcome />} />
@@ -108,7 +105,7 @@ class App extends Component {
         </Switch>
       </RootContext.Provider>
     )
-    let notAuthorized = <NotLoggedIn />
+    const notAuthorized = <NotLoggedIn />
 
     return (
       <Router>
