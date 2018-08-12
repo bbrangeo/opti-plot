@@ -58,7 +58,7 @@ router.post('/login', (req, res) => {
 		}
 	})
 })
-
+//
 router.post('/me/from/token', (req, res) => {
 	let token = req.body.token;
 	if (!token) {
@@ -72,7 +72,12 @@ router.post('/me/from/token', (req, res) => {
 				res.status(401).json(err);
 			} else {
 				User.findById(user._id)
-					.populate('gardens')
+					.populate({
+						path: 'gardens',
+						populate: {
+							path: 'plots'
+						}
+					})
 					.exec( function (err, user) {
 							if (err) {
 								res.status(401).json(err);

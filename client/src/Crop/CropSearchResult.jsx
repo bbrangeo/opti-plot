@@ -1,15 +1,46 @@
-import React from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
+import { Grid, Button } from '@material-ui/core';
+import { Icon } from '../Icon';
 
-export const CropSearchResult = props => {
-  let cropInfo = null;
-  axios.get(`https://openfarm.cc/api/v1/crops/${props.crop}`).then(response => {
-    cropInfo = response.data.data
-  })
+export class CropSearchResult extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      result: null
+    }
+  }
 
-  return (
-    <div>
-      <h3>{cropInfo.attributes.name}</h3>
-    </div>
-  )
+  componentDidMount() {
+    axios.get(`https://openfarm.cc/api/v1/crops/${this.props.crop}`).then(response => {
+      this.setState({
+        result: response.data.data,
+      })
+    })
+  }
+
+  render() {
+    const name = this.state.result ? this.state.result.attributes.name : ''
+    const binomialName = this.state.result ? this.state.result.attributes.binomial_name : ''
+    const description = this.state.result ? this.state.result.attributes.description : ''
+    let iconString = this.state.result ? this.state.result.attributes.svg_icon : ''
+    
+    const gardens = this.props.user.gardens.map( garden => <Button variant="contained" color="primary">Add to {garden.name}</Button>)
+
+    return (
+      <Grid container spacing={16} justify="center">
+        <Grid item xs={3}>
+          <Icon src={iconString} size="100" />
+        </Grid>
+        <Grid item xs={9}>
+          <h2>{name}</h2>
+          <h4>{binomialName}</h4>
+          <p>{description}</p>
+        </Grid>
+        <Grid item xs={12}>
+          {gardens}
+        </Grid>
+      </Grid>
+    )
+  }
 }
