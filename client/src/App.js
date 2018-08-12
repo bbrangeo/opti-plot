@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { RootContext } from './RootContext';
 import { Welcome } from './Welcome';
 import { NotLoggedIn } from './NotLoggedIn';
-import CropSearch from './Crop/CropSearch';
-import GardenShow from './Garden/GardenShow';
 import { Nav } from './Nav';
 import { Grid } from '@material-ui/core';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import * as Colors from '@material-ui/core/colors';
-import axios from 'axios';
+import CropSearch from './Crop/CropSearch';
 import Gardens from './Garden/Gardens';
+import GardenNew from './Garden/GardenNew';
+import GardenShow from './Garden/GardenShow';
+import PlotNew from './Plot/PlotNew';
 
 
 const theme = createMuiTheme({
@@ -107,7 +109,9 @@ class App extends Component {
                       <Switch>
                         <Route exact path='/' component={app} />
                         <Route exact path='/gardens' component={() => <Gardens user={user} /> } />
+                        <Route exact path='/gardens/new' component={() => <GardenNew user={user} /> } />
                         <Route path='/gardens/:id' component={ (props) => <GardenShow user={user} {...props} />} />
+                        <Route exact path='/plots/new' component={() => <PlotNew user={user} /> } />
                         <Route path='/crops' component={ () => <CropSearch user={user} /> } />
                       </Switch>
                     </RootContext.Provider>
