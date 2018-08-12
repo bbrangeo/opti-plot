@@ -30,10 +30,12 @@ class App extends Component {
     this.state = {
       token: '',
       user: null,
+
     }
     this.liftTokenToState = this.liftTokenToState.bind(this);
     this.logout = this.logout.bind(this);
     this.checkForLocalToken = this.checkForLocalToken.bind(this);
+    this.updateUser = this.updateUser.bind(this);
   }
 
   liftTokenToState(data) {
@@ -62,7 +64,7 @@ class App extends Component {
     } else {
       axios.post('/auth/me/from/token', {
         token
-      }).then(results => {
+      }).then( results => {
         localStorage.setItem('mernToken', results.data.token);
         this.setState({
           token: results.data.token,
@@ -70,6 +72,16 @@ class App extends Component {
         })
       }).catch(err => console.log(err));
     }
+  }
+
+  updateUser() {
+    axios.get(`/users/${this.user._id}`).then(
+      response => {
+        this.setState({
+          user: response.data
+        })
+      }
+    )
   }
 
   componentDidMount() {

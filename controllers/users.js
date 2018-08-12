@@ -8,7 +8,12 @@ const Plot = require('../models/Plot')
 // GET /user/:id
 router.get('/:id', (req, res) => {
 	User.findOne({_id: req.params.id})
-		.populate('gardens')
+		.populate({
+			path: 'gardens',
+			populate: {
+				path: 'plots'
+			}
+		})
 		.exec( (err, user) => {
 			err ? res.send(err) : 
 			res.json(user);

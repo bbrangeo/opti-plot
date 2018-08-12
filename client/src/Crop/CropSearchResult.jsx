@@ -25,7 +25,6 @@ export class CropSearchResult extends Component {
   }
 
   addToGarden(e) {
-    e.stopPropagation();
     e.preventDefault();
     console.log('TARGET',e.currentTarget);
     let cropToAdd = {
@@ -39,7 +38,6 @@ export class CropSearchResult extends Component {
     console.log("CROP",cropToAdd);
     axios.put(e.currentTarget.href, cropToAdd).then( response => {
       console.log("RESPONSE", response)
-
     }).catch( err => console.error(err))
     
   }

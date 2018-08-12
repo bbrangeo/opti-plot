@@ -39,7 +39,7 @@ router.get('/:id', (req,res) => {
 // PUT /gardens/:id
 router.put('/:id', (req, res) => {
 	let updates = req.body;
-	Garden.findByIdAndUpdate(req.params._id, {
+	Garden.findByIdAndUpdate(req.params.id, {
 		$set: updates
 	}, {new: true}, (err, garden) => {
 		err ? res.send(err) :
@@ -56,6 +56,28 @@ router.delete('/:id', (req, res) => {
 		res.send(err)
 	})
 	res.sendStatus(200);
+})
+
+// PUT /gardens/:id/addcrop
+router.put('/:id/addcrop', (req,res) => {
+	console.log(req.body)
+	Garden.findById(req.params.id, function(err, garden) {
+		console.log("GARDEN____>", garden)
+		if (err) {
+			console.log(err)
+		} else {
+			garden.cropsChosen.push({
+				name: req.body.name,
+				spread: req.body.spread,
+				rowSpacing: req.body.rowSpacing,
+				icon: req.body.icon,
+				ofId: req.body.ofId,
+				sunRequirements: req.body.sunRequirements
+			})
+			garden.save()
+			res.sendStatus(200);
+		}
+	})
 })
 
 
