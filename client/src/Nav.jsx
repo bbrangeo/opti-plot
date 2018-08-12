@@ -17,7 +17,9 @@ export const Nav = props => {
     menuItems = (
       <span style={{ display: 'inline-block' }}>
       	<Button onClick={props.logout} >Logout</Button>
-      	<Button>My Gardens</Button>
+      	<Link to="/gardens" className="link-btn">
+          <Button>My Gardens</Button>
+        </Link>
       </span>
     )
   }

@@ -27,20 +27,22 @@ const DashList = props => {
   const { classes } = props;
 
   const list = props.user.gardens ? 
-      <List className={classes.root} subheader={<li />}>
+(      <List className={classes.root} subheader={<li />}>
         {props.user.gardens.map(garden => (
           <li key={`section-${garden._id}`} className={classes.listSection}>
             <ul className={classes.ul}>
               <ListSubheader><Link to={`/gardens/${garden._id}`} className="link-btn">{garden.name}</Link></ListSubheader>
-              { garden.plots.map( plot => (
-                <ListItem key={`item-${garden.name}-${plot.name}`} className={classes.ListItem} >
-                  <ListItemText primary={plot.name} />
-                </ListItem>
-              ))}
+              { 
+                garden.plots ? garden.plots.map( plot => (
+                  <ListItem key={`item-${garden.name}-${plot.name}`} className={classes.ListItem} >
+                    <ListItemText primary={plot.name} />
+                  </ListItem>
+                 )) : <ListItem><ListItemText>no plots yet</ListItemText></ListItem>
+              }
             </ul>
           </li>
         ))}
-      </List>
+      </List>)
    : <p>no gardens yet</p>;
   console.log(props.user)
 

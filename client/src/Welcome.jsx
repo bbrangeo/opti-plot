@@ -24,7 +24,6 @@ export const Welcome = props => {
             </Grid>
             <Grid item xs={12} md={6}>
               <DashList user={user}/>
-              {/* <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt nulla inventore quas ab molestiae autem, ea, facere quisquam nemo ullam soluta expedita ad at sapiente nam. Laboriosam dicta repellat beatae!</p> */}
             </Grid>
           </Grid>
           )

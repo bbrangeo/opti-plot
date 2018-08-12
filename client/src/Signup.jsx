@@ -71,6 +71,7 @@ class Signup extends Component {
           onEscapeKeyDown={this.handleClose}
           onBackdropClick={this.handleClose} >
           <div className="auth-modal" >
+            <h3>Sign Up</h3>
             <form onSubmit={this.handleSubmit}>
               Name: <input type="text"
                 value={this.state.name}

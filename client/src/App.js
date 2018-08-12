@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { RootContext } from './RootContext';
 import { Welcome } from './Welcome';
 import { NotLoggedIn } from './NotLoggedIn';
-import { CropInfo } from './Plot/CropInfo';
 import CropSearch from './Crop/CropSearch';
 import GardenShow from './Garden/GardenShow';
 import { Nav } from './Nav';
@@ -11,6 +10,7 @@ import { Grid } from '@material-ui/core';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import * as Colors from '@material-ui/core/colors';
 import axios from 'axios';
+import Gardens from './Garden/Gardens';
 
 
 const theme = createMuiTheme({
@@ -30,6 +30,7 @@ class App extends Component {
     this.state = {
       token: '',
       user: null,
+      updateUser: this.updateUser
 
     }
     this.liftTokenToState = this.liftTokenToState.bind(this);
@@ -92,7 +93,7 @@ class App extends Component {
     const user = this.state.user;
     // TODO: wrap the rest of app in user?
     let app = user ? Welcome : NotLoggedIn;
-    
+    // TODO: fix issue with plots not populating on login
     return (
       <Router>
         <MuiThemeProvider theme={theme}>
@@ -105,6 +106,7 @@ class App extends Component {
                       {/* {app} */}
                       <Switch>
                         <Route exact path='/' component={app} />
+                        <Route exact path='/gardens' component={() => <Gardens user={user} /> } />
                         <Route path='/gardens/:id' component={ (props) => <GardenShow user={user} {...props} />} />
                         <Route path='/crops' component={ () => <CropSearch user={user} /> } />
                       </Switch>

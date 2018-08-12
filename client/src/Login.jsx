@@ -63,7 +63,6 @@ class Login extends Component {
   }
 
   render() {
-    const {classes} = this.props
     return (
       <span>
         <Button onClick={this.handleOpen}>Login</Button>
@@ -72,7 +71,7 @@ class Login extends Component {
           onEscapeKeyDown={this.handleClose}
           onBackdropClick={this.handleClose} >
           <div className="auth-modal" >
-
+          <h3>Login</h3>
           <p>{this.state.response ? this.state.response.message : ''}</p>
           <form onSubmit={this.handleSubmit}>
             Email: <input type="email"

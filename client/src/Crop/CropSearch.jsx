@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { RootContext } from '../RootContext'
 import { TextField, Button, Grid } from '@material-ui/core';
-import { CropInfo } from '../Plot/CropInfo';
+import { CropInfo } from '../Crop/CropInfo';
 import { WelcomeBanner } from '../WelcomeBanner';
 import { CropSearchResult } from './CropSearchResult';
 
@@ -40,6 +40,7 @@ class CropSearch extends Component {
   render() {
     const data = this.state.data ? this.state.data : ''
     const crops = data ? data.map( datum => <CropSearchResult user={this.props.user} crop={datum.id} /> ) : ''
+    // const crops = data ? data.map( datum => <CropInfo crop={datum.id} /> ) : ''
     const lastQ = this.state.lastQ !== '' ? <h3>Search Results for: {this.state.lastQ}</h3> : this.state.lastQ
     return (
       <div>
