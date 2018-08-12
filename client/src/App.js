@@ -91,7 +91,7 @@ class App extends Component {
                       {/* {app} */}
                       <Switch>
                         <Route exact path='/' component={app} />
-                        <Route path='/crops' component={ () => <CropSearch /> } />
+                        <Route path='/crops' component={ () => <CropSearch user={user} /> } />
                       </Switch>
                     </RootContext.Provider>
                   </Grid>

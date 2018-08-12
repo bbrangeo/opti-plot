@@ -24,23 +24,26 @@ export class CropSearchResult extends Component {
     const binomialName = this.state.result ? this.state.result.attributes.binomial_name : ''
     const description = this.state.result ? this.state.result.attributes.description : ''
     let iconString = this.state.result ? this.state.result.attributes.svg_icon : ''
-    
     const gardens = this.props.user.gardens.map( garden => <Button variant="contained" color="primary">Add to {garden.name}</Button>)
-
+    console.log(this.props.user)
     return (
-      <Grid container spacing={16} justify="center">
-        <Grid item xs={3}>
-          <Icon src={iconString} size="100" />
+      <div className="dash-box">
+        <Grid container spacing={16} justify="center">
+          <Grid item xs={3}>
+            <Icon src={iconString} size="100" />
+          </Grid>
+          <Grid item xs={9}>
+            <h2>{name}</h2>
+            <h4>{binomialName}</h4>
+            <p>{description}</p>
+          </Grid>
+          <Grid item xs={12}>
+            <div className="add-to-gardens">
+              {gardens}
+            </div>
+          </Grid>
         </Grid>
-        <Grid item xs={9}>
-          <h2>{name}</h2>
-          <h4>{binomialName}</h4>
-          <p>{description}</p>
-        </Grid>
-        <Grid item xs={12}>
-          {gardens}
-        </Grid>
-      </Grid>
+      </div>
     )
   }
 }

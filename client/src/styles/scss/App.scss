@@ -44,7 +44,7 @@ body {
 }
 
 .dash-box {
-  border: 2px solid rgba(41, 29, 24, 0.679);
+  border: 2px solid #291d18ad;
   padding: 2em;
   margin: 1em;
 }
@@ -58,4 +58,10 @@ body {
 
 .crop-search {
   margin-top: 2em;
+}
+
+.add-to-gardens {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
 }
