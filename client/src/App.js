@@ -95,7 +95,7 @@ class App extends Component {
           <Route exact path='/gardens' component={() => <Gardens user={user} updateUser={this.updateUser} />} />
           <Route exact path='/gardens/new' component={() => <GardenNew user={user} updateUser={this.updateUser} />} />
           <Route path='/gardens/:id' component={(props) => <GardenShow user={user} {...props} />} />
-          <Route exact path='/plots/new' component={() => <PlotNew user={user} updateUser={this.updateUser} />} />
+          <Route exact path='/plots/new' component={(props) => <PlotNew user={user} updateUser={this.updateUser} {...props}/>} />
           <Route path='/crops' component={() => <CropSearch user={user} updateUser={this.updateUser} />} />
         </Switch>
       </RootContext.Provider>

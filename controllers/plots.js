@@ -30,6 +30,22 @@ router.post('/', (req, res) => {
 	})
 })
 
+// DELETE /plots/:id
+router.delete('/:id', (req, res) => {
+	Plot.findOneAndDelete({_id: req.params.id}, (err, plot) => {
+		Garden.findOne({_id: plot.gardenId}, (err, garden) => {
+			if (err) {
+				console.log(err)
+				res.send(err)
+			} else {
+				garden.update({$pull: {plots: req.params.id}});
+				res.sendStatus(200);
+			}
+		})
+	})
+	
+})
+
 
 
 module.exports = router;

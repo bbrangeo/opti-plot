@@ -15,6 +15,17 @@ export const Garden = props => {
       })
   }
 
+  const deletePlot = (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+    let target = e.currentTarget.href
+    axios.delete(target)
+      .then( response => {
+        console.log(response)
+        props.updateUser();
+      })
+  }
+
   return (
     <div className="dash-box">
       <Grid container spacing={16}>
@@ -33,7 +44,13 @@ export const Garden = props => {
           <Grid item xs={12} md={3} className="dash-box">
             <ul>
               {
-                garden.plots.map(plot => <li key={plot._id}>{plot.name}</li>)
+                garden.plots.map(plot => <li key={plot._id}>{plot.name} 
+                                          <Button href={`/plots/${plot._id}`} 
+                                            onClick={(e) => deletePlot(e)} 
+                                            variant="contained"
+                                            color="secondary"
+                                          >DELETE</Button>
+                                          </li>)
               }
             </ul>
           </Grid>
