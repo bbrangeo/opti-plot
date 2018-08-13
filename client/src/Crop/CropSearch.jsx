@@ -18,6 +18,10 @@ class CropSearch extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  componentWillUnmount() {
+    this.props.updateUser();
+  }
+
   queryAPI() {
     let qs = this.state.query
     axios.get(`https://openfarm.cc/api/v1/crops/?filter=${qs}`)
@@ -40,21 +44,11 @@ class CropSearch extends Component {
   }
 
   render() {
-    const crops = this.state.data ? this.state.data.map( datum => <CropSearchResult user={this.props.user} crop={datum.id} updateUser={this.props.updateUser} /> ) : ''
+    const crops = this.state.data ? this.state.data.map( datum => <CropSearchResult user={this.props.user} crop={datum.id} /> ) : ''
     const lastQ = this.state.lastQ !== '' ? <h3>Search Results for: {this.state.lastQ}</h3> : this.state.lastQ
     return (
       <div>
-        <RootContext.Consumer>
-          {
-            ({user}) => {
-              if (user) {
-                return <WelcomeBanner user={user}><h3>Research those crops!</h3></WelcomeBanner>
-              } else {
-                return <WelcomeBanner user="user">How did you get here from there??</WelcomeBanner>
-              } 
-            }
-          }
-        </RootContext.Consumer>
+        <WelcomeBanner user={this.props.user}><h3>Research those crops!</h3></WelcomeBanner>
         <div className="crop-search">
           <Grid container spacing={16} justify="center" alignContent="center" alignItems="center">
               <Grid item xs={12} md={10}>

@@ -23,10 +23,6 @@ export class CropSearchResult extends Component {
     }).catch( err => console.log(err));
   }
 
-  componentWillUnmount() {
-    this.props.updateUser();
-  }
-
   addToGarden(e) {
     e.preventDefault();
     console.log('TARGET',e.currentTarget);

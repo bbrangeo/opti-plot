@@ -8,7 +8,7 @@ class PlotNew extends Component {
     super(props)
     this.state = {
       name: '',
-      season: '',
+      season: 'Spring',
       length: '',
       width: '',
       gardenId: this.props.user.gardens[0]._id,
@@ -46,7 +46,7 @@ class PlotNew extends Component {
       ).catch( err => this.setState({message: err}))
       this.setState({ 
         name: '',
-        season: "Spring",
+        season: 'Spring',
         length: '',
         width: '',
         gardenId: this.props.user.gardens[0]._id,
@@ -76,7 +76,7 @@ class PlotNew extends Component {
               {gardenOptions}
             </select>
             <select name="season" onChange={this.handleChange}>
-              <option value="Spring">Spring</option>
+              <option selected="selected" value="Spring">Spring</option>
               <option value="Summer">Summer</option>
               <option value="Fall">Fall</option>
               <option value="Winter">Winter</option>

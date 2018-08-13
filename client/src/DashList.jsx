@@ -36,7 +36,7 @@ const DashList = props =>  {
               { 
                 garden.plots.map( plot => (
                   <ListItem key={`item-${garden.name}-${plot.name}`} className={classes.ListItem} >
-                    <ListItemText primary={plot.name} />
+                    <ListItemText primary={plot.name} secondary={plot.season}/>
                   </ListItem>
                   ))
               }
