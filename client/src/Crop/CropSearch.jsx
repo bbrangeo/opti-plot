@@ -19,14 +19,16 @@ class CropSearch extends Component {
   }
 
   queryAPI() {
-    
     let qs = this.state.query
     axios.get(`https://openfarm.cc/api/v1/crops/?filter=${qs}`)
       .then( response => {
+        console.log(response)
         this.setState({
           data: response.data.data,
           query: '',
           lastQ: qs
+        }, function() {
+          console.log("CALLBACK AFTER SET STATE",this.state)
         })
       })
   }
@@ -38,8 +40,7 @@ class CropSearch extends Component {
   }
 
   render() {
-    const data = this.state.data ? this.state.data : ''
-    const crops = data ? data.map( datum => <CropSearchResult user={this.props.user} crop={datum.id} /> ) : ''
+    const crops = this.state.data ? this.state.data.map( datum => <CropSearchResult user={this.props.user} crop={datum.id} updateUser={this.props.updateUser} /> ) : ''
     const lastQ = this.state.lastQ !== '' ? <h3>Search Results for: {this.state.lastQ}</h3> : this.state.lastQ
     return (
       <div>

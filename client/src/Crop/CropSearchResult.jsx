@@ -8,7 +8,6 @@ export class CropSearchResult extends Component {
     super(props)
     this.state = {
       result: null,
-      gardens: [],
     }
     this.addToGarden = this.addToGarden.bind(this)
   }
@@ -24,6 +23,10 @@ export class CropSearchResult extends Component {
     }).catch( err => console.log(err));
   }
 
+  componentWillUnmount() {
+    this.props.updateUser();
+  }
+
   addToGarden(e) {
     e.preventDefault();
     console.log('TARGET',e.currentTarget);
@@ -33,7 +36,7 @@ export class CropSearchResult extends Component {
       rowSpacing: this.state.result.attributes.row_spacing,
       icon: this.state.result.attributes.svg_icon,
       ofId: this.state.result.id,
-      sunRequirements: this.state.result.attributes.sun_requirements,
+      sunRequirements: this.state.result.attributes.sun_requirements
     }
     console.log("CROP",cropToAdd);
     axios.put(e.currentTarget.href, cropToAdd).then( response => {
@@ -48,7 +51,6 @@ export class CropSearchResult extends Component {
     const description = this.state.result ? this.state.result.attributes.description : ''
     let iconString = this.state.result ? this.state.result.attributes.svg_icon : ''
     const gardens = this.props.user.gardens.map(garden => <Button href={`/gardens/${garden._id}/addcrop`} variant="contained" color="primary" onClick={this.addToGarden} children={`Add to ${garden.name}`} />)
-    // console.log(this.props.user)
     return (
       <div className="dash-box">
         <Grid container spacing={16} justify="center">
