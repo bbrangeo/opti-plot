@@ -53,4 +53,7 @@ body {
   align-items: center;
   justify-content: space-evenly; }
 
+.del-btn {
+  margin-left: 2em; }
+
 /*# sourceMappingURL=App.css.map */

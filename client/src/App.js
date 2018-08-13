@@ -18,7 +18,7 @@ import PlotNew from './Plot/PlotNew';
 const theme = createMuiTheme({
   palette: {
     primary: Colors.green,
-    secondary: Colors.brown,
+    secondary: Colors.orange,
     background: {
       paper: Colors.white,
     }

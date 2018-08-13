@@ -2,6 +2,16 @@ import React from 'react';
 import axios from 'axios';
 import { Icon } from '../Icon';
 import { Grid, Button } from '@material-ui/core';
+import DeleteIcon from '@material-ui/icons/Delete';
+
+const styles = theme => ({
+  button: {
+    margin: theme.spacing.unit,
+  },
+  extendedIcon: {
+    marginRight: theme.spacing.unit,
+  },
+});
 
 export const Garden = props => {
   let garden = props.garden
@@ -47,10 +57,13 @@ export const Garden = props => {
                 garden.plots.map(plot => <li key={plot._id}>{plot.name} 
                                           <Button href={`/plots/${plot._id}`} 
                                             onClick={(e) => deletePlot(e)} 
-                                            variant="contained"
+                                            variant="fab"
                                             color="secondary"
-                                          >DELETE</Button>
-                                          </li>)
+                                            className="del-btn"
+                                            >
+                                            <DeleteIcon />
+                                          </Button>
+                                         </li>)
               }
             </ul>
           </Grid>

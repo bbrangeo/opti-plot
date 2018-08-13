@@ -54,6 +54,9 @@ body {
   align-items: center;
   justify-content: space-evenly; }
 
+.del-btn {
+  margin-left: 2em; }
+
 .companion-stub {
   background: #eee;
   text-align: center; }
