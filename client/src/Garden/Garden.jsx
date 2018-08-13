@@ -54,7 +54,7 @@ export const Garden = props => {
           <h1>{garden.name}&nbsp;&nbsp;<Button variant="contained" onClick={(e) => { deleteGarden(e) }} color="secondary" className="del-btn"><DeleteIcon />Remove</Button></h1>
 
         </Grid>
-        <Grid container spacing={16} justifyContent="space-between">
+        <Grid container spacing={16} >
           <Grid item xs={12} md={4} className="dash-box">
             <h3>Plots</h3>
             <ul>

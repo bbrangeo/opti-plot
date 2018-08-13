@@ -5,6 +5,7 @@ const cropSchema = new mongoose.Schema({
 	numPlanted: Number,
 	spread: Number,
 	rowSpacing: Number,
+	sunRequirements: String,
 	icon: String
 })
 

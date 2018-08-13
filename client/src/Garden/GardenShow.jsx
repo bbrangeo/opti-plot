@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { WelcomeBanner } from '../WelcomeBanner';
 import { Garden } from './Garden';
+import { Plot } from '../Plot/Plot';
 import { Icon } from '../Icon';
 import { Grid } from '@material-ui/core';
 
@@ -21,6 +22,9 @@ const GardenShow = props => {
         <h3>gosh! what a great good garden!</h3>
       </WelcomeBanner>
       <Garden garden={garden} />
+      {
+        garden.plots.map( plot => <Plot plot={plot} /> )
+      }
     </div>
   )
 }
