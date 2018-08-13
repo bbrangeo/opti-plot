@@ -38,6 +38,8 @@ body {
   border: 2px solid #291d18ad;
   padding: 2em;
   margin: 1em; }
+  .dash-box ul {
+    list-style: none; }
 
 .not-logged-in {
   background: url("../../img/notloggedin.jpeg");
