@@ -1,4 +1,5 @@
 $display-font: 'Codystar', Arial, Helvetica, sans-serif;
+$garden-brown: #291D18;
 
 body {
   font-family: Helvetica, Arial, sans-serif;
@@ -33,7 +34,7 @@ body {
 }
 
 .welcome-banner {
-  background: #291D18;
+  background: $garden-brown;
   color: #FFF;
   padding: 2em;
   width: 100%;
@@ -44,7 +45,7 @@ body {
 }
 
 .dash-box {
-  border: 2px solid #291d18ad;
+  border: 2px solid rgba($garden-brown, 0.678);
   padding: 2em;
   margin: 1em;
   ul {
@@ -71,4 +72,14 @@ body {
 
 .del-btn {
   margin-left: 2em;
+}
+
+.plot-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.display-plot {
+  background: $garden-brown;
 }

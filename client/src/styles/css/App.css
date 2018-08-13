@@ -35,7 +35,7 @@ body {
     font-family: "Codystar", Arial, Helvetica, sans-serif; }
 
 .dash-box {
-  border: 2px solid #291d18ad;
+  border: 2px solid rgba(41, 29, 24, 0.678);
   padding: 2em;
   margin: 1em; }
   .dash-box ul {
@@ -57,5 +57,13 @@ body {
 
 .del-btn {
   margin-left: 2em; }
+
+.plot-container {
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+.display-plot {
+  background: #291D18; }
 
 /*# sourceMappingURL=App.css.map */

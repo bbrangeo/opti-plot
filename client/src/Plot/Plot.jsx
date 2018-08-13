@@ -34,7 +34,7 @@ export class Plot extends Component {
             <h4>{plot.season}</h4>
             <p>Dimensions: {plot.length} X {plot.width}</p>
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} md={6}>
             <h3>Optimized Crop Configuration</h3>
             {
               crops ? crops.map( crop => {
@@ -42,15 +42,20 @@ export class Plot extends Component {
                   <div>
                     <h4>{crop.name}</h4>
                     <p>{crop.sunRequirements}</p>
-                    <Icon src={crop.icon} size={30} />
                   </div>
 
                 )
               }) : ''
             }
           </Grid>
-          <Grid item xs={12}>
-
+          <Grid item xs={12} md={6} className='plot-container'>
+            <div className="display-plot" style={{width: plot.length * 10 + '%', height: plot.width * 10 + '%',}}>
+              {
+                crops ? crops.map( crop => {
+                  return <Icon src={crop.icon} size={20} />
+                }) : plot.width*(<p>&nbsp;</p>)
+              }
+            </div>
           </Grid>
         </Grid>
       </div>
