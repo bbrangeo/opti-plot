@@ -34,11 +34,7 @@ export class Plot extends Component {
       )
     }) : ''
     
-    let plotSpace = ''
-    
-    if (this.state.plot) {
-      for (let i = 1; i <= plot.width; i++) { plotSpace += <p>&nbsp;</p> }
-    } 
+    let plotSpace = '' // reserve for crop display
 
     const display = this.state.plot ? (
       <div class="dash-box">

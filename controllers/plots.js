@@ -30,6 +30,13 @@ router.post('/', (req, res) => {
 	})
 })
 
+// GET /plots/:id
+router.get('/:id', (req, res) => {
+	Plot.findOne({_id: req.params.id}, (err, plot) => {
+		err ? res.send(err) : res.json(plot)
+	})
+})
+
 // DELETE /plots/:id
 router.delete('/:id', (req, res) => {
 	Plot.findOneAndDelete({_id: req.params.id}, (err, plot) => {
