@@ -9,6 +9,7 @@ export const WelcomeText = props => {
       <p>Here are some of the things we can help you do:</p>
       <p>&nbsp; &nbsp; &bull; &nbsp; Find growing information for a variety of crops</p>
       <p>&nbsp; &nbsp; &bull; &nbsp; Choose the best crops to combine in your plot</p>
+      <p>&nbsp; &nbsp; &bull; &nbsp; Keep Track of what you are growing and where!</p>
       <DashPanel />
     </div>
   )
