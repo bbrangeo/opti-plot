@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import DashList from '../DashList';
 import axios from 'axios';
-import { Button } from '@material-ui/core';
+import { Grid, Button } from '@material-ui/core';
 
 class GardenNew extends Component {
   state = {
@@ -18,22 +19,31 @@ class GardenNew extends Component {
     let garden = {name: this.state.name, userId: this.props.user._id}
     if ( garden.name !== '') {
       axios.post('/gardens', garden).then( 
-        response => console.log(response)
+        response => {
+          this.props.updateUser();
+          console.log(response)
+        }
       )
       this.setState({name: '', message: ''})
     } else {
       this.setState({message: "Please enter a valid garden name"})
     }
-    this.props.updateUser();
   }
 
   render() {
     return (
-      <div>
-        <p>{this.state.message}</p>
-        <input name="name" type="text" onChange={this.handleChange} />
-        <Button onClick={this.handleSubmit}></Button>
-      </div>
+      <Grid container spacing={16}>
+        <Grid item xs={12} md={6}>
+          <div>
+            <p>{this.state.message}</p>
+            <input name="name" type="text" onChange={this.handleChange} />
+            <Button onClick={this.handleSubmit}>Add a Garden</Button>
+          </div>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <DashList user={this.props.user} />
+        </Grid>
+      </Grid>
     )
   }
 }

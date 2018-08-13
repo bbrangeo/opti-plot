@@ -7,10 +7,12 @@ export const Garden = props => {
   let garden = props.garden
 
   const deleteGarden = (e) => {
-    e.stopPropagation();
+    e.stopPropagation()
     axios.delete(`/gardens/${garden._id}`)
-      .then( response => console.log(response))
-    props.updateUser();
+      .then( response => {
+        console.log(response)
+        props.updateUser();
+      })
   }
 
   return (
