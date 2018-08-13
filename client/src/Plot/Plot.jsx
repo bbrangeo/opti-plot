@@ -7,7 +7,8 @@ export class Plot extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      plot: null
+      plot: null,
+      crops: null,
     }
   }
 
@@ -15,21 +16,30 @@ export class Plot extends Component {
     axios.get(`/plots/${this.props.plot._id}`)
       .then( response => {
         this.setState({
-          plot: response.data
+          plot: response.data,
+          crops: response.data.crops
         })
       }).catch( err => console.log(err))
   }
   
   render() {
     const plot = this.state.plot ? this.state.plot : null
-    const crops = this.state.plot.hasOwnProperty('crops') ? this.state.plot.crops.map(crop => {
+    const crops = this.state.crops ? this.state.crops.map(crop => {
       return (
         <div>
           <h4>{crop.name}</h4>
+          <Icon src={crop.icon} size={30} />
           <p>{crop.sunRequirements}</p>
         </div>
       )
-      }) : ''
+    }) : ''
+    
+    let plotSpace = ''
+    
+    if (this.state.plot) {
+      for (let i = 1; i <= plot.width; i++) { plotSpace += <p>&nbsp;</p> }
+    } 
+
     const display = this.state.plot ? (
       <div class="dash-box">
         <Grid container spacing={16} >
@@ -44,16 +54,19 @@ export class Plot extends Component {
             {crops}
           </Grid>
           <Grid item xs={12} md={6} className='plot-container'>
-            <div className="display-plot" style={{ width: plot.length * 10 + '%', height: plot.width * 10 + '%', }}>
+            <div className="display-plot" style={{ width: plot.length + 'em', height: plot.width + 'em', }}>
+              {plotSpace}
             </div>
           </Grid>
         </Grid>
       </div>
-        ) : '' ;
+    ) : '' ;
 
 
     return(
-      {display}
+      <div>
+        {display}
+      </div>
     )
   }
 }
