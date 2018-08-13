@@ -31,9 +31,7 @@ class App extends Component {
     super(props)
     this.state = {
       token: '',
-      user: null,
-      updateUser: this.updateUser
-
+      user: null
     }
     this.liftTokenToState = this.liftTokenToState.bind(this);
     this.logout = this.logout.bind(this);
@@ -77,14 +75,11 @@ class App extends Component {
     }
   }
 
-  updateUser() {
-    axios.get(`/users/${this.user._id}`).then(
-      response => {
-        this.setState({
-          user: response.data
-        })
-      }
-    )
+  updateUser(e) {
+    console.log('update user', this.state.user._id);
+    axios.get(`/users/${this.state.user._id}`)
+      .then( response => this.setState({user: response.data}))
+      .catch( err => console.log(err))
   }
 
   componentDidMount() {
@@ -97,11 +92,11 @@ class App extends Component {
       <RootContext.Provider value={this.state}>
         <Switch>
           <Route exact path='/' component={() => <Welcome />} />
-          <Route exact path='/gardens' component={() => <Gardens user={user} />} />
-          <Route exact path='/gardens/new' component={() => <GardenNew user={user} />} />
+          <Route exact path='/gardens' component={() => <Gardens user={user} updateUser={this.updateUser} />} />
+          <Route exact path='/gardens/new' component={() => <GardenNew user={user} updateUser={this.updateUser} />} />
           <Route path='/gardens/:id' component={(props) => <GardenShow user={user} {...props} />} />
-          <Route exact path='/plots/new' component={() => <PlotNew user={user} />} />
-          <Route path='/crops' component={() => <CropSearch user={user} />} />
+          <Route exact path='/plots/new' component={() => <PlotNew user={user} updateUser={this.updateUser} />} />
+          <Route path='/crops' component={() => <CropSearch user={user} updateUser={this.updateUser} />} />
         </Switch>
       </RootContext.Provider>
     )

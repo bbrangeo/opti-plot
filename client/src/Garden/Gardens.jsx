@@ -3,7 +3,7 @@ import { Garden } from './Garden'
 import { WelcomeBanner } from '../WelcomeBanner';
 
 const Gardens = props => {
-  let gardens = props.user.gardens.map( garden => <Garden garden={garden} /> )
+  let gardens = props.user.gardens.map( garden => <Garden garden={garden} updateUser={props.updateUser()}/> )
 
   return (
     <div>

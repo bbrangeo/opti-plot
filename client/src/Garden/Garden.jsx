@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import { RootContext } from '../RootContext';
 import { Icon } from '../Icon';
 import { Grid, Button } from '@material-ui/core';
 
@@ -11,6 +10,7 @@ export const Garden = props => {
     e.stopPropagation();
     axios.delete(`/gardens/${garden._id}`)
       .then( response => console.log(response))
+    props.updateUser();
   }
 
   return (

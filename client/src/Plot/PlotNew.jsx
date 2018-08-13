@@ -41,7 +41,8 @@ class PlotNew extends Component {
             message: "Plot added!"
           })
         }
-      )
+      ).catch( err => this.setState({message: err}))
+      this.props.updateUser();
       this.setState({ 
         name: '',
         season: "Spring",
@@ -50,6 +51,7 @@ class PlotNew extends Component {
         gardenId: this.props.user.gardens[0]._id,
         message: '' 
       })
+      // this.props.history.push('/gardens')
     } else {
       this.setState({ message: "Please enter a valid plot name" })
     }

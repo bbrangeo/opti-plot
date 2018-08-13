@@ -9,7 +9,7 @@ const gardens = require('./controllers/gardens');
 const plots = require('./controllers/plots');
 
 const app = express();
-app.use(bp.json());
+app.use(bp.json({limit: '1mb', extended: false }));
 app.use(bp.urlencoded({ extended: false }));
 
 mongoose.connect('mongodb://localhost/optiplot')

@@ -24,7 +24,7 @@ class GardenNew extends Component {
     } else {
       this.setState({message: "Please enter a valid garden name"})
     }
-
+    this.props.updateUser();
   }
 
   render() {
