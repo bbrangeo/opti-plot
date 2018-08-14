@@ -35,9 +35,11 @@ class GardenNew extends Component {
       <Grid container spacing={16}>
         <Grid item xs={12} md={6}>
           <div>
+            <h3>New Garden</h3>
             <p>{this.state.message}</p>
             <input name="name" type="text" onChange={this.handleChange} />
-            <Button onClick={this.handleSubmit}>Add a Garden</Button>
+            &nbsp;&nbsp;
+            <Button variant="contained" color="primary" onClick={this.handleSubmit}>Add a Garden</Button>
           </div>
         </Grid>
         <Grid item xs={12} md={6}>
