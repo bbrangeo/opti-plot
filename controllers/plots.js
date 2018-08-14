@@ -50,8 +50,8 @@ router.delete('/:id', (req, res) => {
 			}
 		})
 	})
-	
 })
+
 
 
 

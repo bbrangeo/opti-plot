@@ -3,6 +3,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const User = require('../models/User');
 const Garden = require('../models/Garden');
+const Plot = require('../models/Plot');
 
 
 // GET /gardens
@@ -26,6 +27,7 @@ router.post('/', (req, res) => {
 		})
 	})
 })
+
 
 // GET /gardens/:id
 router.get('/:id', (req,res) => {
@@ -79,6 +81,38 @@ router.put('/:id/addcrop', (req,res) => {
 	})
 })
 
+router.put('/:id/optimize', (req, res) => {
+	Garden.findById(req.params.id, function (err, garden) {
+		if (err) {
+			res.send(err)
+		} else {
+			if (garden.cropsChosen.length > 0 && garden.plots.length > 0) {
+				console.log("OPTIMIZE", garden)
+				// optimize - placeholder
+				garden.plots.forEach(gardenplot => {
+					Plot.findById(gardenplot._id, function (err, plot) {
+						if (err) console.log("err", err)
+						garden.cropsChosen.forEach( crop => {
+							plot.crops.push({
+								name: crop.name,
+								numPlanted: 5,
+								spread: crop.spread,
+								rowSpacing: crop.rowSpacing,
+								sunRequirements: crop.sunRequirements,
+								icon: crop.icon
+							})
+							plot.save()
+						})
+						console.log(garden)
+					})
+				})
+				res.sendStatus(200);
+			} else {
+				res.sendStatus(300);
+			}
+		}
+	})
+})
 
 
 
